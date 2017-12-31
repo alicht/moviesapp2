@@ -22,4 +22,16 @@ Movie.update = (movie, id) => {
   );
 };
 
+Movie.create = movie => {
+  return db.one(
+    `
+      INSERT INTO movies
+      (title, description)
+      VALUES ($1, $2) RETURNING *
+    `,
+    [movie.title, movie.description]
+  );
+};
+
+
 module.exports = Movie;

@@ -51,6 +51,23 @@ moviesController.update = (req, res) => {
     });
 };
 
+moviesController.new = (req, res) => {
+  res.render('movies/new')
+};
+
+moviesController.create = (req, res) => {
+  Movie.create({
+      title: req.body.title,
+      description: req.body.description
+    })
+    .then(movie => {
+      res.redirect(`/movies/${movie.id}`)
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+};
+
 
 
 module.exports = moviesController;
