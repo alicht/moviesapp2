@@ -18,4 +18,14 @@ moviesController.index = (req, res) => {
     });
 };
 
+moviesController.show = (req, res) => {
+  Movie.findById(req.params.id)
+    .then(movie => {
+      res.render('movies/show', { movie: movie })
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+};
+
 module.exports = moviesController;
