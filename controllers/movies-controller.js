@@ -28,4 +28,29 @@ moviesController.show = (req, res) => {
     });
 };
 
+moviesController.edit = (req, res) => {
+  Movie.findById(req.params.id)
+    .then(movie => {
+      res.render('movies/edit', { movie: movie })
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+};
+
+moviesController.update = (req, res) => {
+  Movie.update({
+      title: req.body.title,
+      description: req.body.description
+    }, req.params.id)
+    .then(() => {
+      res.redirect(`/movies/${req.params.id}`)
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+};
+
+
+
 module.exports = moviesController;
