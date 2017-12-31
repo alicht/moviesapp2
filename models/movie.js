@@ -33,5 +33,15 @@ Movie.create = movie => {
   );
 };
 
+Movie.destroy = id => {
+  return db.none(
+    `
+      DELETE FROM movies
+      WHERE id = $1
+    `,
+    [id]
+  );
+};
+
 
 module.exports = Movie;

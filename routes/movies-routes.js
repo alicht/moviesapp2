@@ -12,5 +12,7 @@ moviesRouter.put('/:id', moviesController.update)
 
 moviesRouter.post('/', moviesController.create)
 
+moviesRouter.delete('/:id', moviesController.destroy)
+
 
 module.exports = moviesRouter;
